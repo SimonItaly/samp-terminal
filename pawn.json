@@ -1,0 +1,12 @@
+{
+	"user": "SimonItaly",
+	"repo": "samp-terminal",
+	"entry": "test.pwn",
+	"output": "test.amx",
+	"dependencies": [
+		"pawn-lang/samp-stdlib",
+		"samp-incognito/samp-streamer-plugin",
+		"oscar-broman/strlib",
+		"pawn-lang/YSI-Includes:v5.06.1932"
+	]
+}
