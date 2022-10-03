@@ -40,7 +40,7 @@ sampctl package install SimonItaly/samp-terminal
 Include in your code and begin using the library:
 
 ```pawn
-#include <samp-terminal>
+#include <terminal>
 ```
 
 ## Usage

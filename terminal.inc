@@ -455,7 +455,7 @@ stock ShowTerminalForPlayer(playerid, termid)
 	rx = x;
 	ry = y;
 
-	GetXYInDirection(rx, ry, rz - 90.0 , 0.5);
+	_GetXYInDirection(rx, ry, rz - 90.0 , 0.5);
 
 	SetPlayerCameraPos(playerid, rx, ry, z);
 	SetPlayerCameraLookAt(playerid, x, y, z);
@@ -490,7 +490,7 @@ stock IsPlayerNearTerminal(playerdid)
 
 //******************************************************************************
 
-hook OnPlayerEnterDynamicArea(playerid, areaid)
+hook OnPlayerEnterDynArea(playerid, areaid)
 {
     foreach(new termid : Terminal)
     {
@@ -510,7 +510,7 @@ hook OnPlayerEnterDynamicArea(playerid, areaid)
 
 //------------------------------------------------------------------------------
 
-hook OnPlayerLeaveDynamicArea(playerid, areaid)
+hook OnPlayerLeaveDynArea(playerid, areaid)
 {
 	if(nearTerminal[playerid] != -1)
 	{
@@ -571,7 +571,7 @@ hook OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 
 //------------------------------------------------------------------------------
 
-stock Term_OnPlayerText(playerid, text[])
+hook OnPlayerText(playerid, text[])
 {
 	new termid  = -(usingTerminal[playerid] ^ nearTerminal[playerid]) - 1;
     if(termid != -1)
@@ -584,17 +584,14 @@ stock Term_OnPlayerText(playerid, text[])
 
 //------------------------------------------------------------------------------
 
-static GetXYInDirection(& Float: X, & Float: Y, Float: Angle, Float: distance = 1.0)
+static _GetXYInDirection(& Float: X, & Float: Y, Float: Angle, Float: distance = 1.0)
 {
     X -= (floatsin(Angle, degrees) * distance);
     Y += (floatcos(Angle, degrees) * distance);
 }
 
-stock GetWeekDay()
+static _GetWeekDay(year, month, day)
 {
-	new year, month, day;
-	getdate(year, month, day)
-
 	new j, e;
 	if(month <= 2)
 	{
@@ -638,7 +635,7 @@ UNIX:date(termid, params[])
 	gettime(hour, minute, second);
 	getdate(year, month, day);
 
-	weekDay = GetWeekDay(year, month, day);
+	weekDay = _GetWeekDay(year, month, day);
 
     UpdateTerminalLine(termid,
 	    sprintf("%s %d %s %d, %02d.%02d.%02d, CET",
