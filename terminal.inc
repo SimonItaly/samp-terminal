@@ -483,7 +483,7 @@ stock ReadNetworkFile(termid)
     #pragma unused termid
 }
 
-stock IsPlayerNearTerminal(playerdid)
+stock IsPlayerNearTerminal(playerid)
 {
 	return nearTerminal[playerid] != -1;
 }
