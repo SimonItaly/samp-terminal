@@ -32,9 +32,8 @@
 	#error terminal.inc requires Slice's strlib include
 #endif
 
-#if !defined _Y_ITERATE_LOCAL_VERSION
-	#error terminal.inc requires Y_Less YSI include
-#endif
+#include <YSI_Data\y_iterate>
+#include <YSI_Coding\y_hooks>
 
 //------------------------------------------------------------------------------
 

@@ -2,7 +2,6 @@
 #include <a_samp>
 #include <streamer>
 #include <strlib>
-#include <YSI_Data/y_iterate>
 
 #include "terminal.inc"
 
@@ -12,22 +11,22 @@ main()
 }
 
 /*
-public OnPlayerEnterTerminal(playerid, termid)
+hook OnPlayerEnterTerminal(playerid, termid)
 {
 	ShowInfoBox(playerid, "Premi ~k~~VEHICLE_ENTER_EXIT~ per usare il terminale", -1);
 }
 
-public OnPlayerExitTerminal(playerid, termid)
+hook OnPlayerExitTerminal(playerid, termid)
 {
 	HideInfoBox(playerid);
 }
 
-public OnPlayerShowTerminal(playerid, termid)
+hook OnPlayerShowTerminal(playerid, termid)
 {
 	HideInfoBox(playerid);
 }
 
-public OnPlayerHideTerminal(playerid, termid)
+hook OnPlayerHideTerminal(playerid, termid)
 {
 	if(IsPlayerNearTerminal(playerid))
 		ShowInfoBox(playerid, "Premi ~k~~VEHICLE_ENTER_EXIT~ per usare il terminale", -1);
