@@ -456,6 +456,8 @@ stock ShowTerminalForPlayer(playerid, termid)
 
 	_GetXYInDirection(rx, ry, rz - 90.0 , 0.5);
 
+	//TogglePlayerControllable(playerid, 0);
+
 	SetPlayerCameraPos(playerid, rx, ry, z);
 	SetPlayerCameraLookAt(playerid, x, y, z);
 
@@ -468,6 +470,8 @@ stock HideTerminalForPlayer(playerid, termid)
 {
     SetCameraBehindPlayer(playerid);
 	usingTerminal[playerid] = -1;
+
+	//TogglePlayerControllable(playerid, 1);
 
 	CallLocalFunction("OnPlayerHideTerminal", "ii", playerid, termid);
 }
@@ -576,9 +580,9 @@ hook OnPlayerText(playerid, text[])
     if(termid != -1)
     {
     	SendTerminalCommand(termid, text);
-    	return 1;
+    	return ~0;
 	}
-	return 0;
+	return 1;
 }
 
 //------------------------------------------------------------------------------
@@ -624,6 +628,20 @@ static _GetWeekDay(year, month, day)
  *    - whoami
  
  */
+
+UNIX:sfrp(termid, params[]) return unix_credits(termid, params);
+UNIX:credits(termid, params[])
+{
+	UpdateTerminalLine(termid, " __ __ __  __");
+	UpdateTerminalLine(termid, "(_ |_ |__)|__)");
+	UpdateTerminalLine(termid, "__)|  | \\ |");
+	UpdateTerminalLine(termid, " ");
+	UpdateTerminalLine(termid, "A SA:MP Terminal Emulator");
+	UpdateTerminalLine(termid, "(c) Simon, December 2014");
+	UpdateTerminalLine(termid, " ");
+	UpdateTerminalLine(termid, "Please send complaints to /dev/null");
+	return 1;
+}
 
 UNIX:date(termid, params[])
 {
@@ -680,7 +698,6 @@ UNIX:hostname(termid, params[])
 	    strcpy(UNIX_Terminal[termid][termHostname], params, MAX_TERM_HOSTNAME);
 	return 1;
 }
-
 
 UNIX:exit(termid, params[]) return unix_logout(termid, params);
 UNIX:logout(termid, params[])
