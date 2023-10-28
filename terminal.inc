@@ -421,7 +421,7 @@ stock TerminalLockdown(termid)
     UNIX_Terminal[termid][termLogon] = false;
     UNIX_Terminal[termid][termLocked] = 0;
 
-    SetTimerEx("RemoveTerminalLock", TERMINAL_LOCKDOWN_TIME * 1000, 0, "i", termid);
+    SetTimerEx("RemoveTerminalLock", TERMINAL_LOCKDOWN_TIME * 1000, false, "i", termid);
 }
 
 stock TerminalInputLine(termid)
@@ -547,7 +547,7 @@ hook OnPlayerConnect(playerid)
 
 //------------------------------------------------------------------------------
 
-hook OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
+hook OnPlayerKeyStateChange(playerid, KEY:newkeys, KEY:oldkeys)
 {
 	if(nearTerminal[playerid] != -1)
 	{
